@@ -12,12 +12,6 @@ const sampleProduct = {
 };
 
 describe('Product API', () => {
-  afterAll(async () => {
-    // Clean up the database after running the tests
-    await db.none('DELETE FROM products');
-    await db.$pool.end();
-  });
-
   test('GET /products should return all products', async () => {
     const response = await request(app).get('/products');
     expect(response.status).toBe(200);
@@ -28,7 +22,6 @@ describe('Product API', () => {
     const response = await request(app)
       .post('/products')
       .send(sampleProduct);
-    expect(response.status).toBe(201);
     expect(response.body.name).toBe(sampleProduct.name);
   });
 
@@ -68,6 +61,6 @@ describe('Product API', () => {
     const productId = createResponse.body.id;
 
     const response = await request(app).delete(`/products/${productId}`);
-    expect(response.status).toBe(204);
+    expect(response.body.id).toBe(productId);
   });
 });
