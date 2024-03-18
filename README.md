@@ -15,7 +15,7 @@ Set up a Postgres database and update the database connection configuration in c
 Run the database schema file (schema.sql) to create the required tables:
 
 ```bash
-psql -U <username> -d <database> -f schema.sql
+psql -f schema.sql
 ```
 Start the Express server by running:
 
