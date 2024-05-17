@@ -4,6 +4,6 @@ const productsRouter = require('./routes/products');
 
 app.use(express.json());
 
-app.use('/products', productsRouter);
+app.use(productsRouter);
 
 module.exports = app;
